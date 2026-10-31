@@ -1,36 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f5f7ff">
 <title>PAXFLOW PRO</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:Arial,sans-serif;
-  background:#f4f6fc;
-  color:#17213b;
-  padding-bottom:85px
-}
-button{cursor:pointer;border:0;font:inherit}
-.top{
-  padding:22px 18px 25px;
-  color:white;
-  background:linear-gradient(135deg,#5546dc,#8c52e8);
-  border-radius:0 0 27px 27px
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f6fc;color:#17213b;padding-bottom:85px}
+button{border:0;cursor:pointer;font:inherit}
+input{font:inherit}
+.auth{min-height:100vh;padding:25px 18px;background:#f4f6fc;display:flex;align-items:center;justify-content:center}
+.authbox{background:white;padding:25px;border-radius:22px;width:100%;max-width:420px;box-shadow:0 10px 35px #26345b12}
+.brand{font-size:25px;font-weight:900;color:#594bd4}
+.brand span{color:#e4a52c}
+.muted{font-size:12px;color:#8791a5;line-height:1.6}
+.label{font-size:12px;font-weight:700;display:block;margin-top:18px}
+.input{width:100%;padding:13px;border:1px solid #e1e5ef;border-radius:11px;margin-top:8px;font-size:14px}
+.primary{background:linear-gradient(135deg,#5749d9,#8953e8);color:white;padding:12px 17px;border-radius:11px;font-size:13px;font-weight:700}
+.secondary{background:#f0efff;color:#5849d4;padding:11px 15px;border-radius:11px;font-size:12px}
+.full{width:100%;margin-top:17px}
+#authMessage{font-size:12px;margin-top:14px;line-height:1.5}
+#appScreen{display:none}
+.top{padding:22px 18px 25px;color:white;background:linear-gradient(135deg,#5546dc,#8c52e8);border-radius:0 0 27px 27px}
 .topline{display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:22px;font-weight:900;letter-spacing:1px}
 .tag{font-size:10px;background:#ffffff2b;padding:7px 10px;border-radius:20px}
 .welcome{margin-top:25px;font-size:13px;opacity:.85}
 .top h1{font-size:25px;margin-top:6px}
-.balance-card{
-  margin-top:22px;background:#ffffff20;
-  border:1px solid #ffffff35;border-radius:20px;
-  padding:18px
-}
+.balance-card{margin-top:22px;background:#ffffff20;border:1px solid #ffffff35;border-radius:20px;padding:18px}
 .balance-label{font-size:12px;opacity:.8}
 .balance{font-size:31px;font-weight:800;margin:8px 0}
 .balance small{font-size:13px;font-weight:500}
@@ -41,26 +41,15 @@ main{padding:18px}
 .heading{font-size:19px;font-weight:800;margin:7px 0 15px}
 .sub{font-size:12px;color:#7d879d;margin-top:-9px;margin-bottom:17px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0}
-.stat,.card,.task,.wallet{
-  background:white;border:1px solid #e9ecf5;
-  border-radius:17px;padding:16px;
-  box-shadow:0 5px 18px #26345b08
-}
+.stat,.card,.task,.wallet{background:white;border:1px solid #e9ecf5;border-radius:17px;padding:16px;box-shadow:0 5px 18px #26345b08}
 .stat span{font-size:11px;color:#8490a6}
 .stat strong{display:block;font-size:21px;margin-top:8px}
 .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.quick button{
-  background:white;border:1px solid #e9ecf5;
-  padding:15px 5px;border-radius:15px;
-  color:#5145cb;font-size:12px;font-weight:700
-}
+.quick button{background:white;border:1px solid #e9ecf5;padding:15px 5px;border-radius:15px;color:#5145cb;font-size:12px;font-weight:700}
 .quick b{display:block;font-size:23px;margin-bottom:7px}
 .tabs{display:flex;gap:8px;overflow:auto;margin-bottom:15px}
-.tab{
-  white-space:nowrap;background:white;border:1px solid #e5e8f1;
-  padding:10px 14px;border-radius:20px;font-size:12px;color:#68728a
-}
-.tab.active{background:#5949d8;color:white;border-color:#5949d8}
+.tab{white-space:nowrap;background:white;border:1px solid #e5e8f1;padding:10px 14px;border-radius:20px;font-size:12px;color:#68728a}
+.tab.active{background:#5949d8;color:white}
 .task{margin-bottom:12px}
 .task-head{display:flex;justify-content:space-between;gap:10px}
 .task h3{font-size:14px;margin-bottom:6px}
@@ -68,48 +57,20 @@ main{padding:18px}
 .reward{color:#159c70;font-size:13px;font-weight:800;white-space:nowrap}
 .task-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
 .pill{font-size:10px;background:#f0efff;color:#6555d6;padding:6px 9px;border-radius:20px}
-.primary{
-  background:linear-gradient(135deg,#5749d9,#8953e8);
-  color:white;padding:11px 17px;border-radius:11px;
-  font-size:12px;font-weight:700
-}
-.secondary{background:#f0efff;color:#5849d4;padding:11px 15px;border-radius:11px;font-size:12px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .wallet{display:flex;align-items:center;gap:11px;margin-bottom:10px}
-.wallet-icon{
-  width:42px;height:42px;border-radius:13px;
-  display:grid;place-items:center;background:#f0efff;
-  font-size:20px
-}
+.wallet-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#f0efff;font-size:20px}
 .wallet-info{flex:1}
 .wallet-info b{font-size:13px;display:block}
 .wallet-info small{font-size:10px;color:#8490a6}
 .wallet button{font-size:11px;color:#594bd4;background:#f2f0ff;padding:9px;border-radius:9px}
-.input{
-  width:100%;padding:13px;border:1px solid #e1e5ef;
-  border-radius:11px;margin:8px 0 14px;font-size:14px
-}
-.label{font-size:12px;font-weight:700}
-.bottom{
-  position:fixed;bottom:0;left:0;right:0;
-  display:flex;justify-content:space-around;
-  background:white;border-top:1px solid #e9ecf5;
-  padding:10px 4px calc(10px + env(safe-area-inset-bottom));
-  z-index:5
-}
+.bottom{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:white;border-top:1px solid #e9ecf5;padding:10px 4px calc(10px + env(safe-area-inset-bottom));z-index:5}
 .bottom button{background:none;color:#8b93a7;font-size:10px;min-width:55px}
 .bottom button span{display:block;font-size:20px;margin-bottom:4px}
 .bottom button.active{color:#594bd4;font-weight:800}
-.overlay{
-  display:none;position:fixed;inset:0;background:#10152c88;
-  z-index:10;align-items:flex-end;justify-content:center
-}
+.overlay{display:none;position:fixed;inset:0;background:#10152c88;z-index:10;align-items:flex-end;justify-content:center}
 .overlay.show{display:flex}
-.sheet{
-  background:white;width:100%;max-width:520px;
-  border-radius:24px 24px 0 0;padding:23px 20px 30px;
-  max-height:88vh;overflow:auto
-}
+.sheet{background:white;width:100%;max-width:520px;border-radius:24px 24px 0 0;padding:23px 20px 30px;max-height:88vh;overflow:auto}
 .sheet h2{font-size:20px;margin-bottom:9px}
 .sheet p{font-size:13px;color:#78839a;line-height:1.6;margin-bottom:16px}
 .sheet-actions{display:flex;gap:10px;margin-top:18px}
@@ -119,159 +80,306 @@ main{padding:18px}
 .history{font-size:12px;color:#65718a;padding:12px 0;border-bottom:1px solid #edf0f5}
 </style>
 </head>
-
 <body>
 
+<!-- REGISTRATION / LOGIN -->
+<div class="auth" id="authScreen">
+ <div class="authbox">
+  <div class="brand">PAXFLOW <span>PRO</span></div>
+  <p class="muted" style="margin-top:12px">Create your account using mobile number verification.</p>
+
+  <div id="registerFields">
+   <label class="label">Full Name</label>
+   <input class="input" id="fullName" placeholder="Enter your full name">
+
+   <label class="label">Mobile Number</label>
+   <input class="input" id="phoneNumber" type="tel" maxlength="10" placeholder="10-digit mobile number">
+
+   <div id="recaptcha-container" style="margin-top:15px"></div>
+   <button class="primary full" id="sendOtpBtn" onclick="sendOTP()">Send SMS OTP</button>
+  </div>
+
+  <div id="otpArea" style="display:none">
+   <label class="label">Enter SMS OTP</label>
+   <input class="input" id="otpCode" type="text" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP">
+   <button class="primary full" onclick="verifyOTP()">Verify OTP & Register</button>
+   <button class="secondary full" onclick="backToPhone()">Change Mobile Number</button>
+  </div>
+  <p id="authMessage"></p>
+  <p class="muted" style="margin-top:18px">By continuing, you agree to use this demo responsibly.</p>
+ </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="appScreen">
 <header class="top">
-  <div class="topline">
-    <div class="logo">PAXFLOW <span style="color:#ffd66e">PRO</span></div>
-    <div class="tag">DEMO ACCOUNT</div>
+ <div class="topline">
+  <div class="logo">PAXFLOW <span style="color:#ffd66e">PRO</span></div>
+  <div class="tag">MEMBER ACCOUNT</div>
+ </div>
+ <div class="welcome">WELCOME BACK</div>
+ <h1 id="welcomeName">Your Dashboard</h1>
+ <div class="balance-card">
+  <div class="balance-label">DEMO WALLET BALANCE</div>
+  <div class="balance" id="balance">10.00 <small>USDT</small></div>
+  <div class="balance-bottom">
+   <span>Demo account</span>
+   <span id="earned">Rewards earned: 0.00</span>
   </div>
-  <div class="welcome">WELCOME BACK</div>
-  <h1>Your Dashboard</h1>
-  <div class="balance-card">
-    <div class="balance-label">DEMO WALLET BALANCE</div>
-    <div class="balance" id="balance">10.00 <small>USDT</small></div>
-    <div class="balance-bottom">
-      <span>Demo account</span>
-      <span id="earned">Rewards earned: 0.00</span>
-    </div>
-  </div>
+ </div>
 </header>
 
 <main>
-
 <section class="section active" id="home">
-  <div class="heading">Overview</div>
-  <div class="stats">
-    <div class="stat"><span>Completed Tasks</span><strong id="completed">0</strong></div>
-    <div class="stat"><span>Available Tasks</span><strong id="available">6</strong></div>
-    <div class="stat"><span>Today's Rewards</span><strong id="today">0.00</strong></div>
-    <div class="stat"><span>Team Members</span><strong>0</strong></div>
-  </div>
-  <div class="heading">Quick Access</div>
-  <div class="quick">
-    <button onclick="showPage('tasks')"><b>📋</b>Tasks</button>
-    <button onclick="showPage('tools')"><b>💳</b>UPI Tools</button>
-    <button onclick="showPage('team')"><b>👥</b>My Team</button>
-  </div>
-  <div class="card" style="margin-top:16px">
-    <b style="font-size:14px">Welcome to PAXFLOW PRO</b>
-    <p style="font-size:12px;color:#8791a5;margin-top:8px;line-height:1.6">
-      Explore demo tasks, complete activities and view simulated rewards.
-      No real payment is processed in this demo.
-    </p>
-  </div>
+ <div class="heading">Overview</div>
+ <div class="stats">
+  <div class="stat"><span>Completed Tasks</span><strong id="completed">0</strong></div>
+  <div class="stat"><span>Available Tasks</span><strong id="available">6</strong></div>
+  <div class="stat"><span>Today's Rewards</span><strong id="today">0.00</strong></div>
+  <div class="stat"><span>Team Members</span><strong>0</strong></div>
+ </div>
+ <div class="heading">Quick Access</div>
+ <div class="quick">
+  <button onclick="showPage('tasks')"><b>📋</b>Tasks</button>
+  <button onclick="showPage('tools')"><b>💳</b>UPI Tools</button>
+  <button onclick="showPage('team')"><b>👥</b>My Team</button>
+ </div>
+ <div class="card" style="margin-top:16px">
+  <b style="font-size:14px">Welcome to PAXFLOW PRO</b>
+  <p class="muted" style="margin-top:8px">Explore demo tasks, complete activities and view simulated rewards. No real payment is processed.</p>
+ </div>
 </section>
 
 <section class="section" id="tasks">
-  <div class="heading">Earn Rewards</div>
-  <div class="sub">Choose a task and view its details</div>
-  <div class="tabs">
-    <button class="tab active" onclick="filterTasks('All',this)">All Tasks</button>
-    <button class="tab" onclick="filterTasks('Daily',this)">Daily</button>
-    <button class="tab" onclick="filterTasks('Popular',this)">Popular</button>
-    <button class="tab" onclick="filterTasks('Tools',this)">Tools</button>
-  </div>
-  <div id="taskList"></div>
+ <div class="heading">Earn Rewards</div>
+ <div class="sub">Choose a task and view its details</div>
+ <div class="tabs">
+  <button class="tab active" onclick="filterTasks('All',this)">All Tasks</button>
+  <button class="tab" onclick="filterTasks('Daily',this)">Daily</button>
+  <button class="tab" onclick="filterTasks('Popular',this)">Popular</button>
+  <button class="tab" onclick="filterTasks('Tools',this)">Tools</button>
+ </div>
+ <div id="taskList"></div>
 </section>
 
 <section class="section" id="tools">
-  <div class="heading">UPI Wallet Tools</div>
-  <div class="sub">Open your selected payment app</div>
-  <div class="notice">
-    PAXFLOW PRO cannot automatically read private UPI IDs from other apps.
-    Open the official app and check your UPI ID there. Never share your UPI PIN or OTP.
-  </div>
-  <div id="walletList"></div>
-  <div class="card">
-    <b style="font-size:14px">Add UPI ID manually</b>
-    <input class="input" id="upiInput" placeholder="Enter your UPI ID">
-    <button class="primary" onclick="saveUPI()">Save UPI ID</button>
-    <p id="upiSaved" style="font-size:12px;color:#159c70;margin-top:10px"></p>
-  </div>
+ <div class="heading">UPI Wallet Tools</div>
+ <div class="sub">Open your selected payment app</div>
+ <div class="notice">PAXFLOW PRO cannot read private UPI IDs from other apps. Never share your UPI PIN or OTP.</div>
+ <div id="walletList"></div>
+ <div class="card">
+  <b style="font-size:14px">Add UPI ID manually</b>
+  <input class="input" id="upiInput" placeholder="Enter your UPI ID">
+  <button class="primary" onclick="saveUPI()">Save UPI ID</button>
+  <p id="upiSaved" class="muted" style="margin-top:10px"></p>
+ </div>
 </section>
 
 <section class="section" id="team">
-  <div class="heading">My Team</div>
-  <div class="card">
-    <div style="font-size:35px">👥</div>
-    <h3 style="margin:10px 0">Team Dashboard</h3>
-    <p style="font-size:12px;color:#8791a5">Your demo team members will appear here.</p>
-    <div class="stats">
-      <div class="stat"><span>Total Members</span><strong>0</strong></div>
-      <div class="stat"><span>Team Rewards</span><strong>0.00</strong></div>
-    </div>
+ <div class="heading">My Team</div>
+ <div class="card">
+  <div style="font-size:35px">👥</div>
+  <h3 style="margin:10px 0">Team Dashboard</h3>
+  <p class="muted">Your team members will appear here when team features are connected.</p>
+  <div class="stats">
+   <div class="stat"><span>Total Members</span><strong>0</strong></div>
+   <div class="stat"><span>Team Rewards</span><strong>0.00</strong></div>
   </div>
+ </div>
 </section>
 
 <section class="section" id="me">
-  <div class="heading">My Account</div>
-  <div class="card">
-    <div style="font-size:35px">👤</div>
-    <h3 style="margin:10px 0">PAXFLOW Member</h3>
-    <p style="font-size:12px;color:#8791a5">Demo User Account</p>
-    <div class="history">Account type <b style="float:right">Demo</b></div>
-    <div class="history">Wallet <b style="float:right">USDT Demo</b></div>
-    <div class="history">Completed tasks <b id="profileCompleted" style="float:right">0</b></div>
-    <button class="secondary" style="margin-top:15px" onclick="resetDemo()">Reset Demo Data</button>
-  </div>
+ <div class="heading">My Account</div>
+ <div class="card">
+  <div style="font-size:35px">👤</div>
+  <h3 id="profileName" style="margin:10px 0">PAXFLOW Member</h3>
+  <p id="profilePhone" class="muted"></p>
+  <div class="history">Account type <b style="float:right">Verified Mobile</b></div>
+  <div class="history">Wallet <b style="float:right">USDT Demo</b></div>
+  <div class="history">Completed tasks <b id="profileCompleted" style="float:right">0</b></div>
+  <button class="secondary" style="margin-top:15px" onclick="resetDemo()">Reset Demo Data</button>
+  <button class="primary" style="margin-top:15px;width:100%" onclick="logout()">Logout</button>
+ </div>
 </section>
-
 </main>
 
 <nav class="bottom">
-  <button class="active" onclick="showPage('home',this)"><span>⌂</span>Home</button>
-  <button onclick="showPage('tasks',this)"><span>▤</span>Tasks</button>
-  <button onclick="showPage('tools',this)"><span>◈</span>Tools</button>
-  <button onclick="showPage('team',this)"><span>♧</span>Team</button>
-  <button onclick="showPage('me',this)"><span>☻</span>Me</button>
+ <button class="active" onclick="showPage('home',this)"><span>⌂</span>Home</button>
+ <button onclick="showPage('tasks',this)"><span>▤</span>Tasks</button>
+ <button onclick="showPage('tools',this)"><span>◈</span>Tools</button>
+ <button onclick="showPage('team',this)"><span>♧</span>Team</button>
+ <button onclick="showPage('me',this)"><span>☻</span>Me</button>
 </nav>
+</div>
 
+<!-- TASK MODAL -->
 <div class="overlay" id="taskModal" onclick="outsideClose(event,'taskModal')">
-  <div class="sheet">
-    <button class="close" onclick="closeModal('taskModal')">×</button>
-    <div class="pill" id="detailCategory">DAILY TASK</div>
-    <h2 id="detailTitle" style="margin-top:15px">Task Details</h2>
-    <p id="detailDescription"></p>
-    <div class="card">
-      <div style="font-size:12px;color:#8490a6">DEMO REWARD</div>
-      <div class="reward" style="font-size:24px;margin-top:8px" id="detailReward">+0.10 USDT</div>
-    </div>
-    <div class="notice">Demo activity only. No real money or payment is involved.</div>
-    <div class="sheet-actions">
-      <button class="secondary" onclick="closeModal('taskModal')">Close</button>
-      <button class="primary" id="taskAction" onclick="startTask()">Start Task</button>
-    </div>
+ <div class="sheet">
+  <button class="close" onclick="closeModal('taskModal')">×</button>
+  <div class="pill" id="detailCategory">DAILY TASK</div>
+  <h2 id="detailTitle" style="margin-top:15px">Task Details</h2>
+  <p id="detailDescription"></p>
+  <div class="card">
+   <div class="muted">DEMO REWARD</div>
+   <div class="reward" style="font-size:24px;margin-top:8px" id="detailReward">+0.10 USDT</div>
   </div>
+  <div class="notice">Demo activity only. No real money or payment is involved.</div>
+  <div class="sheet-actions">
+   <button class="secondary" onclick="closeModal('taskModal')">Close</button>
+   <button class="primary" id="taskAction" onclick="startTask()">Start Task</button>
+  </div>
+ </div>
 </div>
 
 <div class="overlay" id="messageModal" onclick="outsideClose(event,'messageModal')">
-  <div class="sheet">
-    <button class="close" onclick="closeModal('messageModal')">×</button>
-    <h2 id="messageTitle">Notice</h2>
-    <p id="messageText"></p>
-    <button class="primary" style="width:100%" onclick="closeModal('messageModal')">Okay</button>
-  </div>
+ <div class="sheet">
+  <button class="close" onclick="closeModal('messageModal')">×</button>
+  <h2 id="messageTitle">Notice</h2>
+  <p id="messageText"></p>
+  <button class="primary" style="width:100%" onclick="closeModal('messageModal')">Okay</button>
+ </div>
 </div>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
 <script>
+// YOUR FIREBASE PROJECT CONFIG
+const firebaseConfig = {
+ apiKey: "AIzaSyDbkP7fgOGGNqZG7-X7y8naIHD5Q84zW7Q",
+ authDomain: "paxflow-pro.firebaseapp.com",
+ projectId: "paxflow-pro",
+ storageBucket: "paxflow-pro.firebasestorage.app",
+ messagingSenderId: "625051002641",
+ appId: "1:625051002641:web:bf853e3ce9ad45f6f14eb0",
+ measurementId: "G-KZK155SEGC"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+auth.useDeviceLanguage();
+
+let confirmationResult = null;
+let recaptchaVerifier = null;
+
+function authMsg(message,color="#594bd4"){
+ const el=document.getElementById("authMessage");
+ el.textContent=message;
+ el.style.color=color;
+}
+
+function setupRecaptcha(){
+ if(recaptchaVerifier) return;
+ recaptchaVerifier=new firebase.auth.RecaptchaVerifier(
+  "recaptcha-container",
+  {size:"invisible"},
+  auth
+ );
+ recaptchaVerifier.render();
+}
+
+async function sendOTP(){
+ const name=document.getElementById("fullName").value.trim();
+ const mobile=document.getElementById("phoneNumber").value.trim();
+
+ if(name.length<2){
+  authMsg("Please enter your full name.","#d33");return;
+ }
+ if(!/^[6-9]\d{9}$/.test(mobile)){
+  authMsg("Enter a valid 10-digit Indian mobile number.","#d33");return;
+ }
+
+ const btn=document.getElementById("sendOtpBtn");
+ btn.disabled=true;
+ btn.textContent="Sending OTP...";
+
+ try{
+  setupRecaptcha();
+  await recaptchaVerifier.verify();
+  confirmationResult=await auth.signInWithPhoneNumber("+91"+mobile,recaptchaVerifier);
+  document.getElementById("otpArea").style.display="block";
+  document.getElementById("registerFields").style.display="none";
+  authMsg("OTP sent. Please check your SMS.");
+ }catch(error){
+  authMsg(error.message || "Could not send OTP. Please try again.","#d33");
+  if(recaptchaVerifier){
+   recaptchaVerifier.clear();
+   recaptchaVerifier=null;
+  }
+ }finally{
+  btn.disabled=false;
+  btn.textContent="Send SMS OTP";
+ }
+}
+
+async function verifyOTP(){
+ const code=document.getElementById("otpCode").value.trim();
+ const name=document.getElementById("fullName").value.trim();
+
+ if(!/^\d{6}$/.test(code)){
+  authMsg("Enter the 6-digit OTP.","#d33");return;
+ }
+ if(!confirmationResult){
+  authMsg("Please request an OTP first.","#d33");return;
+ }
+
+ try{
+  authMsg("Verifying OTP...");
+  const result=await confirmationResult.confirm(code);
+  await result.user.updateProfile({displayName:name});
+  authMsg("Mobile verified successfully.");
+ }catch(error){
+  authMsg(error.message || "OTP verification failed.","#d33");
+ }
+}
+
+function backToPhone(){
+ document.getElementById("otpArea").style.display="none";
+ document.getElementById("registerFields").style.display="block";
+ document.getElementById("otpCode").value="";
+ confirmationResult=null;
+ authMsg("");
+ if(recaptchaVerifier){
+  recaptchaVerifier.clear();
+  recaptchaVerifier=null;
+ }
+}
+
+auth.onAuthStateChanged(user=>{
+ if(user){
+  document.getElementById("authScreen").style.display="none";
+  document.getElementById("appScreen").style.display="block";
+  document.getElementById("welcomeName").textContent="Hello, "+(user.displayName||"Member");
+  document.getElementById("profileName").textContent=user.displayName||"PAXFLOW Member";
+  document.getElementById("profilePhone").textContent=user.phoneNumber||"";
+  updateUI();
+ }else{
+  document.getElementById("appScreen").style.display="none";
+  document.getElementById("authScreen").style.display="flex";
+ }
+});
+
+async function logout(){
+ try{await auth.signOut();}
+ catch(error){showMessage("Logout Error",error.message);}
+}
+
+// DEMO TASK SYSTEM
 const tasks=[
- {id:1,title:"Daily Login",category:"Daily",reward:0.10,desc:"Open the demo dashboard and explore your account."},
- {id:2,title:"Explore PAXFLOW",category:"Popular",reward:0.15,desc:"Visit the Home, Tasks and Tools sections."},
- {id:3,title:"UPI Tools Demo",category:"Tools",reward:0.10,desc:"Explore the available UPI wallet app shortcuts."},
- {id:4,title:"Profile Check",category:"Daily",reward:0.10,desc:"Open your profile and review demo account information."},
- {id:5,title:"Team Dashboard",category:"Popular",reward:0.20,desc:"Visit the Team section and explore its demo features."},
- {id:6,title:"Complete Demo Tour",category:"Tools",reward:0.25,desc:"Explore all the main sections of PAXFLOW PRO."}
+ {id:1,title:"Daily Login",category:"Daily",reward:.10,desc:"Open the demo dashboard and explore your account."},
+ {id:2,title:"Explore PAXFLOW",category:"Popular",reward:.15,desc:"Visit the Home, Tasks and Tools sections."},
+ {id:3,title:"UPI Tools Demo",category:"Tools",reward:.10,desc:"Explore the available UPI wallet app shortcuts."},
+ {id:4,title:"Profile Check",category:"Daily",reward:.10,desc:"Open your profile and review demo account information."},
+ {id:5,title:"Team Dashboard",category:"Popular",reward:.20,desc:"Visit the Team section and explore its demo features."},
+ {id:6,title:"Complete Demo Tour",category:"Tools",reward:.25,desc:"Explore all the main sections of PAXFLOW PRO."}
 ];
 
 let balance=Number(localStorage.getItem("px_balance")||10);
 let completed=JSON.parse(localStorage.getItem("px_completed")||"[]");
 let earned=Number(localStorage.getItem("px_earned")||0);
 let today=Number(localStorage.getItem("px_today")||0);
-let currentTask=null;
-let started=false;
-let currentFilter="All";
+let currentTask=null,started=false,currentFilter="All";
 
 function save(){
  localStorage.setItem("px_balance",balance);
@@ -279,6 +387,7 @@ function save(){
  localStorage.setItem("px_earned",earned);
  localStorage.setItem("px_today",today);
 }
+
 function updateUI(){
  document.getElementById("balance").innerHTML=balance.toFixed(2)+' <small>USDT</small>';
  document.getElementById("completed").textContent=completed.length;
@@ -288,6 +397,7 @@ function updateUI(){
  document.getElementById("today").textContent=today.toFixed(2);
  renderTasks();
 }
+
 function showPage(id,btn){
  document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
  document.getElementById(id).classList.add("active");
@@ -299,12 +409,14 @@ function showPage(id,btn){
  }
  window.scrollTo(0,0);
 }
+
 function filterTasks(filter,btn){
  currentFilter=filter;
  document.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("active"));
  btn.classList.add("active");
  renderTasks();
 }
+
 function renderTasks(){
  const list=document.getElementById("taskList");
  list.innerHTML="";
@@ -323,6 +435,7 @@ function renderTasks(){
    </div>`;
  });
 }
+
 function openTask(id){
  currentTask=tasks.find(t=>t.id===id);
  started=false;
@@ -331,35 +444,29 @@ function openTask(id){
  document.getElementById("detailDescription").textContent=currentTask.desc;
  document.getElementById("detailReward").textContent="+"+currentTask.reward.toFixed(2)+" USDT";
  const action=document.getElementById("taskAction");
- if(completed.includes(id)){
-  action.textContent="Already Completed";
-  action.disabled=true;
- }else{
-  action.textContent="Start Task";
-  action.disabled=false;
- }
+ action.textContent=completed.includes(id)?"Already Completed":"Start Task";
+ action.disabled=completed.includes(id);
  document.getElementById("taskModal").classList.add("show");
 }
+
 function startTask(){
  if(!currentTask)return;
  const action=document.getElementById("taskAction");
  if(!started){
   started=true;
   action.textContent="Complete Task";
-  document.getElementById("detailDescription").textContent=
-   "Task started! Demo activity complete karne ke baad Complete Task dabayein.";
+  document.getElementById("detailDescription").textContent="Demo task started! Press Complete Task to finish.";
  }else{
   if(completed.includes(currentTask.id))return;
   completed.push(currentTask.id);
   balance+=currentTask.reward;
   earned+=currentTask.reward;
   today+=currentTask.reward;
-  save();
-  updateUI();
-  closeModal("taskModal");
-  showMessage("Task Completed","Your demo reward of "+currentTask.reward.toFixed(2)+" USDT has been added to your demo balance.");
+  save();updateUI();closeModal("taskModal");
+  showMessage("Task Completed","Demo reward of "+currentTask.reward.toFixed(2)+" USDT added.");
  }
 }
+
 function closeModal(id){document.getElementById(id).classList.remove("show")}
 function outsideClose(e,id){if(e.target.id===id)closeModal(id)}
 function showMessage(title,msg){
@@ -367,13 +474,14 @@ function showMessage(title,msg){
  document.getElementById("messageText").textContent=msg;
  document.getElementById("messageModal").classList.add("show");
 }
+
 function resetDemo(){
  if(!confirm("Reset all demo rewards and completed tasks?"))return;
  balance=10;completed=[];earned=0;today=0;
- save();updateUI();
- showMessage("Demo Reset","Your demo account has been reset.");
+ save();updateUI();showMessage("Demo Reset","Your demo account has been reset.");
 }
 
+// UPI APP SHORTCUTS
 const wallets=[
  {name:"Paytm",icon:"🔵",url:"https://paytm.com/"},
  {name:"PhonePe",icon:"🟣",url:"https://www.phonepe.com/"},
@@ -384,6 +492,7 @@ const wallets=[
  {name:"PhonePe Business",icon:"🏬",url:"https://business.phonepe.com/"},
  {name:"BharatPe Business",icon:"💼",url:"https://bharatpe.com/"}
 ];
+
 document.getElementById("walletList").innerHTML=wallets.map(w=>`
  <div class="wallet">
   <div class="wallet-icon">${w.icon}</div>
@@ -391,9 +500,8 @@ document.getElementById("walletList").innerHTML=wallets.map(w=>`
   <button onclick="openWallet('${w.url}')">Open</button>
  </div>`).join("");
 
-function openWallet(url){
- window.open(url,"_blank");
-}
+function openWallet(url){window.open(url,"_blank")}
+
 function saveUPI(){
  const value=document.getElementById("upiInput").value.trim();
  if(!/^[\w.-]+@[\w.-]+$/.test(value)){
@@ -403,6 +511,7 @@ function saveUPI(){
  localStorage.setItem("px_upi",value);
  document.getElementById("upiSaved").textContent="Demo UPI ID saved: "+value;
 }
+
 const oldUPI=localStorage.getItem("px_upi");
 if(oldUPI){
  document.getElementById("upiInput").value=oldUPI;
