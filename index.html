@@ -3,189 +3,412 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#3926c9">
-<title>PAXFLOW PRO — Demo</title>
+<meta name="theme-color" content="#f5f7ff">
+<title>PAXFLOW PRO</title>
+
 <style>
-:root{--blue:#2458ef;--purple:#5625d7;--ink:#17213d;--muted:#77809a;--line:#e9ecf5;--bg:#f4f6fc;--green:#159b70}
-*{box-sizing:border-box}body{margin:0;background:#e9edf7;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
-button,input{font:inherit}button{cursor:pointer}
-.app{width:min(100%,460px);min-height:100vh;margin:auto;background:var(--bg);position:relative;box-shadow:0 0 35px #1a25501a;padding-bottom:82px}
-.topbar{height:62px;background:linear-gradient(110deg,#244ee8,#5b24d7);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:5}
-.brand{font-weight:900;letter-spacing:.4px;font-size:18px}.brand span{color:#ffd65d}.demo{font-size:11px;background:#ffffff24;border:1px solid #ffffff55;padding:6px 9px;border-radius:20px}
-.page{display:none;padding:16px}.page.active{display:block}
-.hero{background:linear-gradient(130deg,#244ee8,#6326d7);color:#fff;border-radius:18px;padding:20px;position:relative;overflow:hidden;box-shadow:0 8px 20px #422bd52b}
-.hero:after{content:"✦";position:absolute;right:18px;top:12px;font-size:58px;color:#ffffff25}.hero h2{font-size:19px;margin:0 0 7px}.hero p{font-size:12px;line-height:1.5;color:#e8eaff;margin:0 0 14px;max-width:260px}
-.pillbtn{border:0;border-radius:20px;padding:9px 14px;background:#fff;color:#2d48c9;font-size:11px;font-weight:800}
-.rate{margin-top:14px;background:linear-gradient(120deg,#ffe28a,#ff9b50);border-radius:16px;padding:16px;color:#33264b}.eyebrow{font-size:9px;letter-spacing:1px;font-weight:800;opacity:.7}.rate strong{display:block;font-size:20px;margin:5px 0}.rate small{font-size:10px}
-.section-title{font-size:15px;font-weight:850;margin:20px 2px 10px}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat,.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;box-shadow:0 3px 12px #1a255008}.stat small{display:block;color:var(--muted);font-size:10px}.stat b{display:block;font-size:17px;margin-top:6px}.stat em{font-style:normal;color:var(--green);font-size:10px}
-.action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.action{display:flex;align-items:center;gap:10px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;color:var(--ink)}.ico{width:36px;height:36px;border-radius:12px;background:#edf2ff;color:#315be8;display:grid;place-items:center;font-size:18px;flex:none}.action b{display:block;font-size:12px}.action small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
-.notice{font-size:10px;color:#68728d;line-height:1.5;background:#eef2ff;border-radius:12px;padding:11px;margin-top:13px}
-.tabs{display:flex;gap:7px;background:#eef1fa;border-radius:12px;padding:4px;margin:12px 0}.tab{border:0;flex:1;padding:9px 4px;border-radius:9px;background:transparent;color:#67718a;font-size:11px;font-weight:700}.tab.active{background:#fff;color:#274fda;box-shadow:0 2px 7px #17213d12}
-.task{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);padding:12px;border-radius:13px;margin:8px 0}.task .grow{flex:1}.task b{font-size:12px}.task small{display:block;color:var(--muted);font-size:10px;margin-top:4px}.start{border:0;border-radius:9px;background:linear-gradient(100deg,var(--blue),var(--purple));color:white;padding:8px 12px;font-size:10px;font-weight:800}
-.profile-head{display:flex;align-items:center;gap:12px;background:#fff;padding:15px;border-radius:16px;border:1px solid var(--line)}.avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2c61ef,#7a36dc);display:grid;place-items:center;color:white;font-weight:900;font-size:18px}.profile-head b{font-size:14px}.profile-head small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
-.balance{margin-top:12px;background:linear-gradient(120deg,#fff,#f0f3ff);border:1px solid #e5e9fa;border-radius:16px;padding:16px}.balance small{color:var(--muted);font-size:11px}.balance-line{display:flex;align-items:center;justify-content:space-between;margin-top:7px}.balance strong{font-size:22px}.primary{border:0;border-radius:11px;padding:11px 15px;color:#fff;background:linear-gradient(100deg,var(--blue),var(--purple));font-weight:800;font-size:11px}
-.menu-list{background:#fff;border:1px solid var(--line);border-radius:15px;margin-top:12px;overflow:hidden}.menu-item{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid #f0f1f6;text-align:left;width:100%;background:white;border:0;color:var(--ink)}.menu-item:last-child{border-bottom:0}.menu-item .grow{flex:1}.menu-item b{font-size:12px}.menu-item small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.arrow{color:#98a0b6}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,460px);height:72px;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);z-index:10;padding-bottom:env(safe-area-inset-bottom)}.nav{border:0;background:white;color:#8991a7;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.nav .ni{font-size:20px}.nav.active{color:#3154df;font-weight:800}
-.modal-back{display:none;position:fixed;inset:0;background:#11182b88;z-index:20;align-items:flex-end;justify-content:center}.modal-back.show{display:flex}.modal{width:min(100%,460px);max-height:90vh;overflow:auto;background:#fff;border-radius:22px 22px 0 0;padding:20px 18px 28px;box-shadow:0 -10px 40px #11182b22}.modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal h3{margin:0;font-size:20px}.close{border:0;background:#f0f2f8;border-radius:50%;width:32px;height:32px;font-size:18px}
-.field{margin:14px 0}.field label{display:block;font-size:11px;font-weight:800;margin-bottom:7px}.field input{width:100%;padding:13px;border:1px solid #e0e4ef;border-radius:11px;outline:none;font-size:13px}.field input:focus{border-color:#5267e9;box-shadow:0 0 0 3px #5267e915}
-.wallet-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.wallet{border:1px solid #e2e6f0;border-radius:11px;background:#fff;padding:11px 8px;font-size:11px;font-weight:750;color:#4a536d}.wallet.selected{border:1.5px solid #4a50df;background:#f1f2ff;color:#303ec4}.wallet span{display:block;font-size:9px;color:#8991a7;margin-top:3px}
-.group-label{font-size:12px;font-weight:850;margin:18px 0 9px}.info{background:#f4f6fb;border-radius:12px;padding:12px;color:#67718a;font-size:10px;line-height:1.55;margin:14px 0}
-.full{width:100%;padding:14px;border:0;border-radius:12px;background:linear-gradient(100deg,#1f53ee,#5928d7);color:white;font-weight:850;font-size:12px}.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);background:#1b2440;color:white;padding:10px 15px;border-radius:20px;font-size:11px;display:none;z-index:30;white-space:nowrap}
-@media(min-width:600px){body{padding:20px 0}.app{border-radius:22px;overflow:hidden;min-height:calc(100vh - 40px)}.bottom{bottom:20px;border-radius:0 0 22px 22px}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f6fc;
+  color:#17213b;
+  padding-bottom:85px
+}
+button{cursor:pointer;border:0;font:inherit}
+.top{
+  padding:22px 18px 25px;
+  color:white;
+  background:linear-gradient(135deg,#5546dc,#8c52e8);
+  border-radius:0 0 27px 27px
+}
+.topline{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:900;letter-spacing:1px}
+.tag{font-size:10px;background:#ffffff2b;padding:7px 10px;border-radius:20px}
+.welcome{margin-top:25px;font-size:13px;opacity:.85}
+.top h1{font-size:25px;margin-top:6px}
+.balance-card{
+  margin-top:22px;background:#ffffff20;
+  border:1px solid #ffffff35;border-radius:20px;
+  padding:18px
+}
+.balance-label{font-size:12px;opacity:.8}
+.balance{font-size:31px;font-weight:800;margin:8px 0}
+.balance small{font-size:13px;font-weight:500}
+.balance-bottom{display:flex;justify-content:space-between;font-size:11px;opacity:.85}
+main{padding:18px}
+.section{display:none}
+.section.active{display:block}
+.heading{font-size:19px;font-weight:800;margin:7px 0 15px}
+.sub{font-size:12px;color:#7d879d;margin-top:-9px;margin-bottom:17px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0}
+.stat,.card,.task,.wallet{
+  background:white;border:1px solid #e9ecf5;
+  border-radius:17px;padding:16px;
+  box-shadow:0 5px 18px #26345b08
+}
+.stat span{font-size:11px;color:#8490a6}
+.stat strong{display:block;font-size:21px;margin-top:8px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.quick button{
+  background:white;border:1px solid #e9ecf5;
+  padding:15px 5px;border-radius:15px;
+  color:#5145cb;font-size:12px;font-weight:700
+}
+.quick b{display:block;font-size:23px;margin-bottom:7px}
+.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:15px}
+.tab{
+  white-space:nowrap;background:white;border:1px solid #e5e8f1;
+  padding:10px 14px;border-radius:20px;font-size:12px;color:#68728a
+}
+.tab.active{background:#5949d8;color:white;border-color:#5949d8}
+.task{margin-bottom:12px}
+.task-head{display:flex;justify-content:space-between;gap:10px}
+.task h3{font-size:14px;margin-bottom:6px}
+.task p{font-size:11px;color:#8791a5;line-height:1.5}
+.reward{color:#159c70;font-size:13px;font-weight:800;white-space:nowrap}
+.task-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.pill{font-size:10px;background:#f0efff;color:#6555d6;padding:6px 9px;border-radius:20px}
+.primary{
+  background:linear-gradient(135deg,#5749d9,#8953e8);
+  color:white;padding:11px 17px;border-radius:11px;
+  font-size:12px;font-weight:700
+}
+.secondary{background:#f0efff;color:#5849d4;padding:11px 15px;border-radius:11px;font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wallet{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+.wallet-icon{
+  width:42px;height:42px;border-radius:13px;
+  display:grid;place-items:center;background:#f0efff;
+  font-size:20px
+}
+.wallet-info{flex:1}
+.wallet-info b{font-size:13px;display:block}
+.wallet-info small{font-size:10px;color:#8490a6}
+.wallet button{font-size:11px;color:#594bd4;background:#f2f0ff;padding:9px;border-radius:9px}
+.input{
+  width:100%;padding:13px;border:1px solid #e1e5ef;
+  border-radius:11px;margin:8px 0 14px;font-size:14px
+}
+.label{font-size:12px;font-weight:700}
+.bottom{
+  position:fixed;bottom:0;left:0;right:0;
+  display:flex;justify-content:space-around;
+  background:white;border-top:1px solid #e9ecf5;
+  padding:10px 4px calc(10px + env(safe-area-inset-bottom));
+  z-index:5
+}
+.bottom button{background:none;color:#8b93a7;font-size:10px;min-width:55px}
+.bottom button span{display:block;font-size:20px;margin-bottom:4px}
+.bottom button.active{color:#594bd4;font-weight:800}
+.overlay{
+  display:none;position:fixed;inset:0;background:#10152c88;
+  z-index:10;align-items:flex-end;justify-content:center
+}
+.overlay.show{display:flex}
+.sheet{
+  background:white;width:100%;max-width:520px;
+  border-radius:24px 24px 0 0;padding:23px 20px 30px;
+  max-height:88vh;overflow:auto
+}
+.sheet h2{font-size:20px;margin-bottom:9px}
+.sheet p{font-size:13px;color:#78839a;line-height:1.6;margin-bottom:16px}
+.sheet-actions{display:flex;gap:10px;margin-top:18px}
+.sheet-actions button{flex:1}
+.close{float:right;background:#f0f1f6;border-radius:50%;width:30px;height:30px}
+.notice{background:#fff8e8;color:#946b19;padding:12px;border-radius:12px;font-size:11px;line-height:1.5;margin:12px 0}
+.history{font-size:12px;color:#65718a;padding:12px 0;border-bottom:1px solid #edf0f5}
 </style>
 </head>
+
 <body>
-<div class="app">
-<header class="topbar"><div class="brand">PAXFLOW <span>PRO</span></div><div class="demo">● DEMO ACCOUNT</div></header>
+
+<header class="top">
+  <div class="topline">
+    <div class="logo">PAXFLOW <span style="color:#ffd66e">PRO</span></div>
+    <div class="tag">DEMO ACCOUNT</div>
+  </div>
+  <div class="welcome">WELCOME BACK</div>
+  <h1>Your Dashboard</h1>
+  <div class="balance-card">
+    <div class="balance-label">DEMO WALLET BALANCE</div>
+    <div class="balance" id="balance">10.00 <small>USDT</small></div>
+    <div class="balance-bottom">
+      <span>Demo account</span>
+      <span id="earned">Rewards earned: 0.00</span>
+    </div>
+  </div>
+</header>
 
 <main>
-<section class="page active" id="home">
-  <div class="hero"><h2>Make every task count</h2><p>Your workspace, balance overview and demo tools — all in one place.</p><button class="pillbtn" onclick="showPage('me')">Explore dashboard →</button></div>
-  <div class="rate"><div class="eyebrow">DEMO RATE BOARD · SAMPLE VALUES</div><strong>USDT / INR</strong><b>1 USDT ≈ ₹88.00</b><br><small>Illustrative sample rate only. No live exchange or payment is performed.</small></div>
-  <div class="section-title">Overview</div><div class="stats">
-    <div class="stat"><small>Demo balance</small><b>USDT 10.00</b><em>Sample data only</em></div>
-    <div class="stat"><small>Pending balance</small><b>USDT 0.00</b><em>No real funds held</em></div>
-    <div class="stat"><small>Tasks completed</small><b id="completedCount">08</b></div>
-    <div class="stat"><small>Today's demo rewards</small><b>+0.30 USDT</b></div>
+
+<section class="section active" id="home">
+  <div class="heading">Overview</div>
+  <div class="stats">
+    <div class="stat"><span>Completed Tasks</span><strong id="completed">0</strong></div>
+    <div class="stat"><span>Available Tasks</span><strong id="available">6</strong></div>
+    <div class="stat"><span>Today's Rewards</span><strong id="today">0.00</strong></div>
+    <div class="stat"><span>Team Members</span><strong>0</strong></div>
   </div>
-  <div class="section-title">Quick actions</div><div class="action-grid">
-    <button class="action" onclick="openModal('deposit')"><span class="ico">＋</span><span><b>Deposit</b><small>Demo balance only</small></span></button>
-    <button class="action" onclick="openModal('withdraw')"><span class="ico">↗</span><span><b>Withdrawal</b><small>Simulated request</small></span></button>
-    <button class="action" onclick="showPage('tools')"><span class="ico">▣</span><span><b>Tools / Add UPI</b><small>Manage demo wallet</small></span></button>
-    <button class="action" onclick="showPage('team')"><span class="ico">♧</span><span><b>Team</b><small>View demo members</small></span></button>
+  <div class="heading">Quick Access</div>
+  <div class="quick">
+    <button onclick="showPage('tasks')"><b>📋</b>Tasks</button>
+    <button onclick="showPage('tools')"><b>💳</b>UPI Tools</button>
+    <button onclick="showPage('team')"><b>👥</b>My Team</button>
   </div>
-  <div class="notice">Demo environment: balances, rewards and requests shown here are sample values. No real deposits, withdrawals, UPI linking or OTP messages are processed.</div>
+  <div class="card" style="margin-top:16px">
+    <b style="font-size:14px">Welcome to PAXFLOW PRO</b>
+    <p style="font-size:12px;color:#8791a5;margin-top:8px;line-height:1.6">
+      Explore demo tasks, complete activities and view simulated rewards.
+      No real payment is processed in this demo.
+    </p>
+  </div>
 </section>
 
-<section class="page" id="tools">
-  <div class="section-title" style="margin-top:3px">Tools</div>
-  <div class="card"><b style="font-size:14px">UPI & Wallet Tools</b><p style="font-size:11px;color:#77809a;line-height:1.5;margin:6px 0 14px">Add a wallet profile to preview how your payment methods would appear.</p><button class="full" onclick="openModal('upi')">＋ &nbsp; Add UPI</button></div>
-  <div class="section-title">Your demo methods</div>
-  <div class="menu-list" id="walletList"><div class="menu-item"><span class="ico">₹</span><span class="grow"><b>No wallet added</b><small>Add a demo wallet profile to see it here</small></span></div></div>
-  <div class="notice">For safety, this prototype never asks for a UPI PIN, bank password, card details or real OTP. Do not share those details with anyone.</div>
+<section class="section" id="tasks">
+  <div class="heading">Earn Rewards</div>
+  <div class="sub">Choose a task and view its details</div>
+  <div class="tabs">
+    <button class="tab active" onclick="filterTasks('All',this)">All Tasks</button>
+    <button class="tab" onclick="filterTasks('Daily',this)">Daily</button>
+    <button class="tab" onclick="filterTasks('Popular',this)">Popular</button>
+    <button class="tab" onclick="filterTasks('Tools',this)">Tools</button>
+  </div>
+  <div id="taskList"></div>
 </section>
 
-<section class="page" id="earn">
-  <div class="section-title" style="margin-top:3px">Earn / Tasks</div><p style="font-size:11px;color:#77809a;margin:0 0 12px">Complete sample tasks to preview the rewards interface.</p>
-  <div class="tabs"><button class="tab active" onclick="earnTab(this,'all')">All Tasks</button><button class="tab" onclick="earnTab(this,'daily')">Daily</button><button class="tab" onclick="earnTab(this,'popular')">Popular</button><button class="tab" onclick="earnTab(this,'tools')">Tools</button></div>
-  <div id="taskList">
-    <div class="task" data-kind="popular"><span class="ico">➤</span><span class="grow"><b>Follow Our Social Media</b><small>+0.50 USDT · Demo reward</small></span><button class="start" onclick="completeTask(this)">Start</button></div>
-    <div class="task" data-kind="popular"><span class="ico">▣</span><span class="grow"><b>Watch Video</b><small>+0.30 USDT · Demo reward</small></span><button class="start" onclick="completeTask(this)">Start</button></div>
-    <div class="task" data-kind="daily"><span class="ico">✎</span><span class="grow"><b>Complete Survey</b><small>+1.00 USDT · Demo reward</small></span><button class="start" onclick="completeTask(this)">Start</button></div>
-    <div class="task" data-kind="popular"><span class="ico">↗</span><span class="grow"><b>Share to Friends</b><small>+0.50 USDT · Demo reward</small></span><button class="start" onclick="completeTask(this)">Start</button></div>
-    <div class="task" data-kind="daily"><span class="ico">◷</span><span class="grow"><b>Daily Login</b><small>+0.20 USDT · Demo reward</small></span><button class="start" onclick="completeTask(this)">Start</button></div>
+<section class="section" id="tools">
+  <div class="heading">UPI Wallet Tools</div>
+  <div class="sub">Open your selected payment app</div>
+  <div class="notice">
+    PAXFLOW PRO cannot automatically read private UPI IDs from other apps.
+    Open the official app and check your UPI ID there. Never share your UPI PIN or OTP.
   </div>
-  <div id="earnTools" style="display:none">
-    <div class="card" style="margin-top:12px">
-      <b style="font-size:14px">UPI Tools</b>
-      <p style="font-size:11px;color:#77809a;line-height:1.5;margin:6px 0 14px">Choose a personal or business wallet to preview adding it to your demo profile.</p>
-      <button class="full" onclick="openModal('upi')">＋ &nbsp; Add UPI</button>
+  <div id="walletList"></div>
+  <div class="card">
+    <b style="font-size:14px">Add UPI ID manually</b>
+    <input class="input" id="upiInput" placeholder="Enter your UPI ID">
+    <button class="primary" onclick="saveUPI()">Save UPI ID</button>
+    <p id="upiSaved" style="font-size:12px;color:#159c70;margin-top:10px"></p>
+  </div>
+</section>
+
+<section class="section" id="team">
+  <div class="heading">My Team</div>
+  <div class="card">
+    <div style="font-size:35px">👥</div>
+    <h3 style="margin:10px 0">Team Dashboard</h3>
+    <p style="font-size:12px;color:#8791a5">Your demo team members will appear here.</p>
+    <div class="stats">
+      <div class="stat"><span>Total Members</span><strong>0</strong></div>
+      <div class="stat"><span>Team Rewards</span><strong>0.00</strong></div>
     </div>
-    <div class="section-title">Personal Wallet</div>
-    <div class="action-grid">
-      <button class="action" onclick="openWalletFromEarn('Paytm')"><span class="ico">₹</span><span><b>Paytm</b><small>Personal UPI</small></span></button>
-      <button class="action" onclick="openWalletFromEarn('PhonePe')"><span class="ico">◉</span><span><b>PhonePe</b><small>Personal UPI</small></span></button>
-      <button class="action" onclick="openWalletFromEarn('MobiKwik')"><span class="ico">M</span><span><b>MobiKwik</b><small>Personal UPI</small></span></button>
-      <button class="action" onclick="openWalletFromEarn('Navi')"><span class="ico">N</span><span><b>Navi</b><small>Personal UPI</small></span></button>
-    </div>
-    <div class="section-title">Business Wallet</div>
-    <div class="action-grid">
-      <button class="action" onclick="openWalletFromEarn('Paytm Biz')"><span class="ico">₹</span><span><b>Paytm Biz</b><small>Business UPI</small></span></button>
-      <button class="action" onclick="openWalletFromEarn('PhonePe Biz')"><span class="ico">◉</span><span><b>PhonePe Biz</b><small>Business UPI</small></span></button>
-      <button class="action" onclick="openWalletFromEarn('BharatPe Biz')"><span class="ico">▰</span><span><b>BharatPe Biz</b><small>Business UPI</small></span></button>
-      <button class="action" onclick="openWalletFromEarn('GPay Business')"><span class="ico">G</span><span><b>GPay Business</b><small>Business UPI · Demo</small></span></button>
-    </div>
-    <div class="notice">Demo only: no real UPI account is linked and no OTP is sent. Never enter or share a UPI PIN, bank password or real OTP.</div>
   </div>
-  <div class="notice" id="taskNotice">Tasks are interactive UI examples only. No external likes, follows, views or paid actions are triggered.</div>
 </section>
 
-<section class="page" id="team">
-  <div class="section-title" style="margin-top:3px">Team</div>
-  <div class="hero"><div style="font-size:11px;color:#e5e8ff">Total Team Members</div><div style="font-size:30px;font-weight:900;margin-top:5px">12</div><div style="font-size:11px;margin-top:5px">Demo team overview</div></div>
-  <div class="stats" style="margin-top:12px"><div class="stat"><small>Team commission</small><b>USDT 25.40</b><em>+12% sample</em></div><div class="stat"><small>Active members</small><b>09</b></div></div>
-  <div class="section-title">Team Members</div>
-  <div class="menu-list">
-    <div class="menu-item"><span class="avatar" style="width:36px;height:36px;font-size:12px">AK</span><span class="grow"><b>Amit Kumar</b><small>Level 1 · 3 Users</small></span><em style="color:var(--green);font-size:11px">+5.20</em></div>
-    <div class="menu-item"><span class="avatar" style="width:36px;height:36px;font-size:12px">RS</span><span class="grow"><b>Rohit Soni</b><small>Level 2 · 5 Users</small></span><em style="color:var(--green);font-size:11px">+8.60</em></div>
-    <div class="menu-item"><span class="avatar" style="width:36px;height:36px;font-size:12px">NM</span><span class="grow"><b>Neha Meena</b><small>Level 3 · 4 Users</small></span><em style="color:var(--green);font-size:11px">+4.80</em></div>
+<section class="section" id="me">
+  <div class="heading">My Account</div>
+  <div class="card">
+    <div style="font-size:35px">👤</div>
+    <h3 style="margin:10px 0">PAXFLOW Member</h3>
+    <p style="font-size:12px;color:#8791a5">Demo User Account</p>
+    <div class="history">Account type <b style="float:right">Demo</b></div>
+    <div class="history">Wallet <b style="float:right">USDT Demo</b></div>
+    <div class="history">Completed tasks <b id="profileCompleted" style="float:right">0</b></div>
+    <button class="secondary" style="margin-top:15px" onclick="resetDemo()">Reset Demo Data</button>
   </div>
-  <button class="full" style="margin-top:14px" onclick="toast('Demo team list opened')">View Full Team</button>
 </section>
 
-<section class="page" id="me">
-  <div class="profile-head"><div class="avatar">AS</div><div style="flex:1"><b>Aman Soni</b><small>ID: PX125450 · Demo profile</small></div><span style="font-size:20px">⚙</span></div>
-  <div class="balance"><small>Total Balance (Demo)</small><div class="balance-line"><strong>USDT 10.00</strong><button class="primary" onclick="openModal('deposit')">Recharge</button></div></div>
-  <div class="menu-list">
-    <button class="menu-item" onclick="openModal('deposit')"><span class="ico">＋</span><span class="grow"><b>Deposit</b><small>Add demo balance</small></span><span class="arrow">›</span></button>
-    <button class="menu-item" onclick="openModal('withdraw')"><span class="ico" style="background:#fff1e8;color:#ef873b">↗</span><span class="grow"><b>Withdrawal</b><small>Preview withdrawal request</small></span><span class="arrow">›</span></button>
-    <button class="menu-item" onclick="openModal('history')"><span class="ico">▤</span><span class="grow"><b>Transaction History</b><small>View demo transactions</small></span><span class="arrow">›</span></button>
-    <button class="menu-item" onclick="openModal('referral')"><span class="ico">♧</span><span class="grow"><b>Referral</b><small>Invite friends</small></span><span class="arrow">›</span></button>
-    <button class="menu-item" onclick="openModal('settings')"><span class="ico">⚙</span><span class="grow"><b>Settings</b><small>Demo app settings</small></span><span class="arrow">›</span></button>
-  </div>
-  <div class="notice">Profile and account details are sample data. This demo is not connected to a live account or payment provider.</div>
-</section>
 </main>
 
 <nav class="bottom">
-<button class="nav active" data-page="home" onclick="showPage('home')"><span class="ni">⌂</span>Home</button>
-<button class="nav" data-page="earn" type="button" onclick="showPage('earn')"><span class="ni">▤</span>Earn</button>
-<button class="nav" data-page="team" onclick="showPage('team')"><span class="ni">♧</span>Team</button>
-<button class="nav" data-page="me" onclick="showPage('me')"><span class="ni">♟</span>Me</button>
+  <button class="active" onclick="showPage('home',this)"><span>⌂</span>Home</button>
+  <button onclick="showPage('tasks',this)"><span>▤</span>Tasks</button>
+  <button onclick="showPage('tools',this)"><span>◈</span>Tools</button>
+  <button onclick="showPage('team',this)"><span>♧</span>Team</button>
+  <button onclick="showPage('me',this)"><span>☻</span>Me</button>
 </nav>
+
+<div class="overlay" id="taskModal" onclick="outsideClose(event,'taskModal')">
+  <div class="sheet">
+    <button class="close" onclick="closeModal('taskModal')">×</button>
+    <div class="pill" id="detailCategory">DAILY TASK</div>
+    <h2 id="detailTitle" style="margin-top:15px">Task Details</h2>
+    <p id="detailDescription"></p>
+    <div class="card">
+      <div style="font-size:12px;color:#8490a6">DEMO REWARD</div>
+      <div class="reward" style="font-size:24px;margin-top:8px" id="detailReward">+0.10 USDT</div>
+    </div>
+    <div class="notice">Demo activity only. No real money or payment is involved.</div>
+    <div class="sheet-actions">
+      <button class="secondary" onclick="closeModal('taskModal')">Close</button>
+      <button class="primary" id="taskAction" onclick="startTask()">Start Task</button>
+    </div>
+  </div>
 </div>
 
-<div class="modal-back" id="modalBack" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-top"><h3 id="modalTitle">Add UPI</h3><button class="close" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div>
-<div class="toast" id="toast"></div>
+<div class="overlay" id="messageModal" onclick="outsideClose(event,'messageModal')">
+  <div class="sheet">
+    <button class="close" onclick="closeModal('messageModal')">×</button>
+    <h2 id="messageTitle">Notice</h2>
+    <p id="messageText"></p>
+    <button class="primary" style="width:100%" onclick="closeModal('messageModal')">Okay</button>
+  </div>
+</div>
+
 <script>
-let selectedWallet='Paytm', savedWallets=[];
-function showPage(id){
- const target=document.getElementById(id);
- if(!target){toast('Section not found');return;}
- document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
- document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===id));
- document.getElementById('modalBack').classList.remove('show');
+const tasks=[
+ {id:1,title:"Daily Login",category:"Daily",reward:0.10,desc:"Open the demo dashboard and explore your account."},
+ {id:2,title:"Explore PAXFLOW",category:"Popular",reward:0.15,desc:"Visit the Home, Tasks and Tools sections."},
+ {id:3,title:"UPI Tools Demo",category:"Tools",reward:0.10,desc:"Explore the available UPI wallet app shortcuts."},
+ {id:4,title:"Profile Check",category:"Daily",reward:0.10,desc:"Open your profile and review demo account information."},
+ {id:5,title:"Team Dashboard",category:"Popular",reward:0.20,desc:"Visit the Team section and explore its demo features."},
+ {id:6,title:"Complete Demo Tour",category:"Tools",reward:0.25,desc:"Explore all the main sections of PAXFLOW PRO."}
+];
+
+let balance=Number(localStorage.getItem("px_balance")||10);
+let completed=JSON.parse(localStorage.getItem("px_completed")||"[]");
+let earned=Number(localStorage.getItem("px_earned")||0);
+let today=Number(localStorage.getItem("px_today")||0);
+let currentTask=null;
+let started=false;
+let currentFilter="All";
+
+function save(){
+ localStorage.setItem("px_balance",balance);
+ localStorage.setItem("px_completed",JSON.stringify(completed));
+ localStorage.setItem("px_earned",earned);
+ localStorage.setItem("px_today",today);
+}
+function updateUI(){
+ document.getElementById("balance").innerHTML=balance.toFixed(2)+' <small>USDT</small>';
+ document.getElementById("completed").textContent=completed.length;
+ document.getElementById("profileCompleted").textContent=completed.length;
+ document.getElementById("available").textContent=tasks.length-completed.length;
+ document.getElementById("earned").textContent="Rewards earned: "+earned.toFixed(2);
+ document.getElementById("today").textContent=today.toFixed(2);
+ renderTasks();
+}
+function showPage(id,btn){
+ document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".bottom button").forEach(x=>x.classList.remove("active"));
+ if(btn)btn.classList.add("active");
+ else{
+  const names=["home","tasks","tools","team","me"];
+  document.querySelectorAll(".bottom button")[names.indexOf(id)].classList.add("active");
+ }
  window.scrollTo(0,0);
 }
-function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2200);}
-function openModal(type){
- const back=document.getElementById('modalBack'), title=document.getElementById('modalTitle'), body=document.getElementById('modalBody');
- back.classList.add('show');
- if(type==='upi'){
-  title.textContent='Add UPI';
-  body.innerHTML=`<div class="field"><label>Mobile</label><input id="upiMobile" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div>
-  <p style="font-size:11px;color:#77809a;line-height:1.5;margin:0 0 14px">Select the wallet where your UPI is active. This is a local demo selection only.</p>
-  <div class="group-label">Personal Wallet</div><div class="wallet-grid">${['Paytm','PhonePe','MobiKwik','Navi'].map(w=>`<button class="wallet ${selectedWallet===w?'selected':''}" onclick="pickWallet(this,'${w}')">${w}<span>Personal UPI</span></button>`).join('')}</div>
-  <div class="group-label">Business Wallet</div><div class="wallet-grid">${['Paytm Biz','PhonePe Biz','BharatPe Biz','GPay Business'].map(w=>`<button class="wallet ${selectedWallet===w?'selected':''}" onclick="pickWallet(this,'${w}')">${w}<span>Business UPI</span></button>`).join('')}</div>
-  <div class="info">Demo only: do not enter a real phone number. No OTP is sent or collected. Never share your UPI PIN, bank password or OTP.</div><button class="full" onclick="saveWallet()">Save Demo Wallet</button>`;
- } else if(type==='deposit'){
-  title.textContent='Deposit · Demo';body.innerHTML=`<div class="hero"><h2>Add Demo Balance</h2><p>Preview balance top-up flow. No payment will be collected.</p></div><div class="field"><label>Amount (USDT)</label><input id="amount" type="number" min="1" placeholder="Enter demo amount"></div><div class="wallet-grid">${[10,50,100,500].map(n=>`<button class="wallet" onclick="document.getElementById('amount').value=${n}">${n} USDT</button>`).join('')}</div><div class="info">This action only displays a sample confirmation. No real deposit or UPI payment is possible.</div><button class="full" onclick="demoAction('Demo deposit preview created')">Continue</button>`;
- } else if(type==='withdraw'){
-  title.textContent='Withdrawal · Demo';body.innerHTML=`<div class="field"><label>Amount (USDT)</label><input id="amount" type="number" min="1" placeholder="Enter demo amount"></div><div class="field"><label>Wallet</label><input value="Demo wallet · Not connected" disabled></div><div class="info">This is a UI preview only. No withdrawal request is sent and no bank or wallet details are collected.</div><button class="full" onclick="demoAction('Demo withdrawal preview created')">Preview Request</button>`;
- } else if(type==='history'){
-  title.textContent='Transaction History';body.innerHTML=`<div class="task"><span class="ico">＋</span><span class="grow"><b>Demo Deposit</b><small>Sample entry · Today</small></span><b style="color:var(--green)">+10.00</b></div><div class="task"><span class="ico">✓</span><span class="grow"><b>Task Reward</b><small>Sample entry · Yesterday</small></span><b style="color:var(--green)">+0.30</b></div><div class="info">All entries are illustrative sample records.</div>`;
- } else if(type==='referral'){
-  title.textContent='Referral';body.innerHTML=`<div class="hero"><h2>Invite Friends</h2><p>Share a sample referral code with your team.</p></div><div class="field"><label>Your Demo Referral Code</label><input value="PX125450" readonly></div><button class="full" onclick="toast('Demo referral code: PX125450')">Copy Demo Code</button>`;
- } else {
-  title.textContent='Settings';body.innerHTML=`<div class="menu-list"><div class="menu-item"><span class="grow"><b>Language</b><small>English · Demo</small></span><span>›</span></div><div class="menu-item"><span class="grow"><b>App version</b><small>PAXFLOW PRO · Demo 1.0</small></span></div></div><div class="info">Settings are local demo controls. No account data is stored on a server.</div>`;
+function filterTasks(filter,btn){
+ currentFilter=filter;
+ document.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("active"));
+ btn.classList.add("active");
+ renderTasks();
+}
+function renderTasks(){
+ const list=document.getElementById("taskList");
+ list.innerHTML="";
+ tasks.filter(t=>currentFilter==="All"||t.category===currentFilter).forEach(t=>{
+  const done=completed.includes(t.id);
+  list.innerHTML+=`
+   <div class="task">
+    <div class="task-head">
+     <div><h3>${t.title}</h3><p>${t.desc}</p></div>
+     <div class="reward">+${t.reward.toFixed(2)}<br><small>USDT</small></div>
+    </div>
+    <div class="task-bottom">
+     <span class="pill">${t.category}</span>
+     <button class="${done?'secondary':'primary'}" onclick="openTask(${t.id})">${done?'Completed':'View Details'}</button>
+    </div>
+   </div>`;
+ });
+}
+function openTask(id){
+ currentTask=tasks.find(t=>t.id===id);
+ started=false;
+ document.getElementById("detailTitle").textContent=currentTask.title;
+ document.getElementById("detailCategory").textContent=currentTask.category;
+ document.getElementById("detailDescription").textContent=currentTask.desc;
+ document.getElementById("detailReward").textContent="+"+currentTask.reward.toFixed(2)+" USDT";
+ const action=document.getElementById("taskAction");
+ if(completed.includes(id)){
+  action.textContent="Already Completed";
+  action.disabled=true;
+ }else{
+  action.textContent="Start Task";
+  action.disabled=false;
+ }
+ document.getElementById("taskModal").classList.add("show");
+}
+function startTask(){
+ if(!currentTask)return;
+ const action=document.getElementById("taskAction");
+ if(!started){
+  started=true;
+  action.textContent="Complete Task";
+  document.getElementById("detailDescription").textContent=
+   "Task started! Demo activity complete karne ke baad Complete Task dabayein.";
+ }else{
+  if(completed.includes(currentTask.id))return;
+  completed.push(currentTask.id);
+  balance+=currentTask.reward;
+  earned+=currentTask.reward;
+  today+=currentTask.reward;
+  save();
+  updateUI();
+  closeModal("taskModal");
+  showMessage("Task Completed","Your demo reward of "+currentTask.reward.toFixed(2)+" USDT has been added to your demo balance.");
  }
 }
-function pickWallet(btn,name){selectedWallet=name;document.querySelectorAll('.wallet').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');}
-function saveWallet(){let m=document.getElementById('upiMobile').value.trim();if(m && !/^\d{10}$/.test(m)){toast('Enter a 10-digit demo number or leave blank');return;}savedWallets.push({name:selectedWallet,mobile:m?m.replace(/\d(?=\d{2})/g,'•'):'Not provided'});renderWallets();closeModal();toast('Demo wallet saved on this screen');}
-function renderWallets(){let el=document.getElementById('walletList');el.innerHTML=savedWallets.map(w=>`<div class="menu-item"><span class="ico">₹</span><span class="grow"><b>${w.name}</b><small>${w.mobile} · Demo only</small></span><span style="color:var(--green);font-size:10px">Saved</span></div>`).join('');}
-function demoAction(msg){let a=document.getElementById('amount');if(a && (!a.value || Number(a.value)<=0)){toast('Enter a valid demo amount');return;}closeModal();toast(msg+' · No real transaction');}
-function closeModal(){document.getElementById('modalBack').classList.remove('show');}
-function earnTab(btn,kind){
- document.querySelectorAll('#earn .tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
- const tools=kind==='tools';document.getElementById('taskList').style.display=tools?'none':'block';
- document.getElementById('earnTools').style.display=tools?'block':'none';
- document.getElementById('taskNotice').style.display=tools?'none':'block';
- document.querySelectorAll('.task[data-kind]').forEach(x=>x.style.display=(!tools&&(kind==='all'||x.dataset.kind===kind))?'flex':'none');
+function closeModal(id){document.getElementById(id).classList.remove("show")}
+function outsideClose(e,id){if(e.target.id===id)closeModal(id)}
+function showMessage(title,msg){
+ document.getElementById("messageTitle").textContent=title;
+ document.getElementById("messageText").textContent=msg;
+ document.getElementById("messageModal").classList.add("show");
 }
-function openWalletFromEarn(name){selectedWallet=name;openModal('upi');}
-function taskTab(btn,kind){earnTab(btn,kind);}
-function completeTask(btn){btn.textContent='Completed';btn.disabled=true;btn.style.background='#dff5ed';btn.style.color='#14845f';document.getElementById('completedCount').textContent=String(Number(document.getElementById('completedCount').textContent)+1).padStart(2,'0');toast('Demo task marked complete');}
+function resetDemo(){
+ if(!confirm("Reset all demo rewards and completed tasks?"))return;
+ balance=10;completed=[];earned=0;today=0;
+ save();updateUI();
+ showMessage("Demo Reset","Your demo account has been reset.");
+}
+
+const wallets=[
+ {name:"Paytm",icon:"🔵",url:"https://paytm.com/"},
+ {name:"PhonePe",icon:"🟣",url:"https://www.phonepe.com/"},
+ {name:"MobiKwik",icon:"🟠",url:"https://www.mobikwik.com/"},
+ {name:"Navi",icon:"🟢",url:"https://navi.com/"},
+ {name:"Google Pay",icon:"🌈",url:"https://pay.google.com/"},
+ {name:"Paytm Business",icon:"🏪",url:"https://business.paytm.com/"},
+ {name:"PhonePe Business",icon:"🏬",url:"https://business.phonepe.com/"},
+ {name:"BharatPe Business",icon:"💼",url:"https://bharatpe.com/"}
+];
+document.getElementById("walletList").innerHTML=wallets.map(w=>`
+ <div class="wallet">
+  <div class="wallet-icon">${w.icon}</div>
+  <div class="wallet-info"><b>${w.name}</b><small>Official app / website</small></div>
+  <button onclick="openWallet('${w.url}')">Open</button>
+ </div>`).join("");
+
+function openWallet(url){
+ window.open(url,"_blank");
+}
+function saveUPI(){
+ const value=document.getElementById("upiInput").value.trim();
+ if(!/^[\w.-]+@[\w.-]+$/.test(value)){
+  document.getElementById("upiSaved").textContent="Please enter a valid UPI ID.";
+  return;
+ }
+ localStorage.setItem("px_upi",value);
+ document.getElementById("upiSaved").textContent="Demo UPI ID saved: "+value;
+}
+const oldUPI=localStorage.getItem("px_upi");
+if(oldUPI){
+ document.getElementById("upiInput").value=oldUPI;
+ document.getElementById("upiSaved").textContent="Saved: "+oldUPI;
+}
+updateUI();
 </script>
 </body>
 </html>
